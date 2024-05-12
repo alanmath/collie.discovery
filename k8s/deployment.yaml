@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery
+spec:
+  selector:
+    matchLabels:
+      app: discovery
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: discovery
+    spec:
+      containers:
+        - name: discovery
+          image: alanmath/discovery:latest
+          ports:
+            - containerPort: 8080
+
+            - name: DISCOVERY_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: discovery-configmap
+                  key: DISCOVERY_HOST
+
