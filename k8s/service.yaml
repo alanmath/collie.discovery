@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: discovery
   labels:
-    name: discovery
+    app: discovery
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8761
+      targetPort: 8761
       protocol: TCP
   selector:
     app: discovery
